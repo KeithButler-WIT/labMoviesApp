@@ -7,6 +7,7 @@ import CardHeader from "@mui/material/CardHeader";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import IconButton from "@mui/material/IconButton";
@@ -19,6 +20,8 @@ import { MoviesContext } from "../../contexts/moviesContext";
 
 export default function MovieCard({ movie, action }) {
   const { favourites, addToFavourites } = useContext(MoviesContext);
+  const { playlist, addToPlaylist } = useContext(MoviesContext);
+
 
   if (favourites.find((id) => id === movie.id)) {
     movie.favourite = true;
@@ -29,6 +32,17 @@ export default function MovieCard({ movie, action }) {
   const handleAddToFavourite = (e) => {
     e.preventDefault();
     addToFavourites(movie);
+  };
+
+  if (playlist.find((id) => id === movie.id)) {
+    movie.playlist = true;
+  } else {
+    movie.playlist = false
+  }
+
+  const handleAddToPlaylist = (e) => {
+    e.preventDefault();
+    addToPlaylist(movie);
   };
 
   return (
@@ -74,6 +88,9 @@ export default function MovieCard({ movie, action }) {
       <CardActions disableSpacing>
         <IconButton aria-label="add to favourites" onClick={handleAddToFavourite}>
           <FavoriteIcon color="primary" fontSize="large" />
+        </IconButton>
+        <IconButton aria-label="add to playlist" onClick={handleAddToPlaylist}>
+          <PlaylistAddIcon color="primary" fontSize="large" />
         </IconButton>
         <Link to={`/movies/${movie.id}`}>
           <Button variant="outlined" size="medium" color="primary">
