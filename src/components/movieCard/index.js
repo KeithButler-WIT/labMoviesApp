@@ -53,8 +53,21 @@ export default function MovieCard({ movie, action }) {
               <Avatar sx={{ backgroundColor: 'red' }}>
                 {action(movie)}
               </Avatar>
+            ) : movie.playlist ? (
+              <Avatar sx={{ backgroundColor: 'red' }}>
+                {action(movie)}
+              </Avatar>
             ) : null
           }
+          // if (movie.favourite) {
+          //   <Avatar sx={{ backgroundColor: 'red' }}>
+          //     {action(movie)}
+          //   </Avatar>
+          // } else if (movie.playlist) {
+          //   <Avatar sx={{ backgroundColor: 'red' }}>
+          //     {action(movie)}
+          //   </Avatar>
+          // } else null
           title={
             <Typography variant="h5" component="p">
               {movie.title}{" "}

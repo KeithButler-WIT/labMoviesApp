@@ -34,6 +34,12 @@ const MoviesContextProvider = (props) => {
     setPlaylist(newPlaylist);
   };
 
+  const removeFromPlaylist = (movie) => {
+    setPlaylist( playlist.filter(
+      (mId) => mId !== movie.id
+    ) )
+  };
+
   return (
     <MoviesContext.Provider
         value={{
@@ -43,6 +49,7 @@ const MoviesContextProvider = (props) => {
         addReview,
         playlist,
         addToPlaylist,
+        removeFromPlaylist,
         }}
     >
         {props.children}

@@ -23,6 +23,11 @@ const HomePage = (props) => {
   localStorage.setItem('favourites', JSON.stringify(favourites))
   const addToFavourites = (movieId) => true
 
+  // Redundant, but necessary to avoid app crashing.
+  const playlist = movies.filter(m => m.playlist)
+  localStorage.setItem('playlist', JSON.stringify(playlist))
+  const addToPlaylist = (movieId) => true
+
   return (
     <PageTemplate
       title="Discover Movies"
